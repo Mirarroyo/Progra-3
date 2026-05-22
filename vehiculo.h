@@ -9,9 +9,9 @@
 #include <sstream>
 using namespace std;
 
-// ─────────────────────────────────────────────
+
 // Clase base: Vehiculo
-// ─────────────────────────────────────────────
+
 class Vehiculo {
 
 protected:
@@ -38,9 +38,9 @@ public:
   
 };
 
-// ─────────────────────────────────────────────
+
 // Subclase: Auto  (herencia de vehiculo)
-// ─────────────────────────────────────────────
+
 class Auto : public Vehiculo {
 
 private:
@@ -62,9 +62,9 @@ public:
 
 };
 
-// ─────────────────────────────────────────────
+
 // Subclase: Moto  (herencia de vehiculo)
-// ─────────────────────────────────────────────
+
 class Moto : public Vehiculo {
 
 private:
@@ -86,9 +86,8 @@ public:
 
 };
 
-// ─────────────────────────────────────────────
+
 // Subclase: Camioneta  (herencia de vehiculo)
-// ─────────────────────────────────────────────
 class Camioneta : public Vehiculo {
 
 private:
