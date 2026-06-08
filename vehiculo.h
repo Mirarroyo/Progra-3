@@ -1,5 +1,6 @@
 /*
- * Proyecto progra 3
+ Proyecto Estacionamiento 
+ Progra 3
  */
 
 #ifndef VEHICULO_H_
@@ -7,10 +8,10 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
 using namespace std;
 
-
-// Clase base: Vehiculo
+// Clase base abstracta: Vehiculo
 
 class Vehiculo {
 
@@ -20,26 +21,23 @@ protected:
     string color;
 
 public:
-    // Constructor
     Vehiculo() : placa(""), marca(""), color("") {}
 
-    // Constructor ya con parámetros
     Vehiculo(string pla, string mar, string col)
         : placa(pla), marca(mar), color(col) {}
 
-    // Getters
+    // getters
     string getPlaca() { return placa; }
     string getMarca() { return marca; }
     string getColor() { return color; }
 
-    // getTipo será sobreescrito por cada subclase (sobrescritura)
-    string getTipo() { return "vehiculo"; }
+    virtual string getTipo()   = 0;
+    virtual string to_string() = 0;
 
-  
 };
 
 
-// Subclase: Auto  (herencia de vehiculo)
+// Subclase: auto 
 
 class Auto : public Vehiculo {
 
@@ -47,66 +45,76 @@ private:
     int numPuertas;
 
 public:
-    // Constructor p
     Auto() : Vehiculo(), numPuertas(4) {}
 
-    // Constructor con parámetros 
     Auto(string pla, string mar, string col, int puertas)
         : Vehiculo(pla, mar, col), numPuertas(puertas) {}
 
-    // Getter propio
     int getNumPuertas() { return numPuertas; }
 
-    // Sobreescritura de getTipo
     string getTipo() { return "auto"; }
-
+    //
+    string to_string() {
+        stringstream ss;
+        ss << "Placa: "    << placa
+           << " | Marca: "  << marca
+           << " | Color: "  << color
+           << " | Tipo: auto"
+           << " | Puertas: " << numPuertas;
+        return ss.str();
+    }
 };
-
-
-// Subclase: Moto  (herencia de vehiculo)
-
+// Subclase: Moto
 class Moto : public Vehiculo {
 
 private:
     bool sidecar;
 
 public:
-    // Constructor
     Moto() : Vehiculo(), sidecar(false) {}
 
-    // Constructor con parámetros
     Moto(string pla, string mar, string col, bool sid)
         : Vehiculo(pla, mar, col), sidecar(sid) {}
 
-    // Getter 
     bool getSidecar() { return sidecar; }
 
-    // Sobreescritura de getTipo
     string getTipo() { return "moto"; }
 
+    string to_string() {
+        stringstream ss;
+        ss << "Placa: "    << placa
+           << " | Marca: "  << marca
+           << " | Color: "  << color
+           << " | Tipo: moto"
+           << " | Sidecar: " << (sidecar ? "si" : "no");
+        return ss.str();
+    }
 };
-
-
-// Subclase: Camioneta  (herencia de vehiculo)
+// Subclase: Camioneta
 class Camioneta : public Vehiculo {
 
 private:
     double cargaMax;
 
 public:
-    // Constructor por default
     Camioneta() : Vehiculo(), cargaMax(0.0) {}
 
-    // Constructor con parámetros
     Camioneta(string pla, string mar, string col, double carga)
         : Vehiculo(pla, mar, col), cargaMax(carga) {}
 
-    // Getter propio
     double getCargaMax() { return cargaMax; }
 
-    // Sobreescritura de getTipo
     string getTipo() { return "camioneta"; }
 
+    string to_string() {
+        stringstream ss;
+        ss << "Placa: "        << placa
+           << " | Marca: "      << marca
+           << " | Color: "      << color
+           << " | Tipo: camioneta"
+           << " | Carga max: "  << cargaMax << " ton";
+        return ss.str();
+    }
 };
 
 #endif // VEHICULO_H_
