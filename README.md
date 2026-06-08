@@ -16,5 +16,4 @@ El sistema maneja tres tipos de vehículos:
 
 Auto — tarifa estándar
 Moto — tarifa reducida
-Camioneta — tarifa alta por ocupar más espacio
 
