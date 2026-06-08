@@ -139,14 +139,14 @@ public:
 
     string generarRecibo() {
         stringstream ss;
-        ss << "=== RECIBO ==="
+        ss << "RECIBO "
            << "\nBoleto:   " << ticket->getId()
            << "\nVehiculo: " << ticket->getIdVehiculo()
            << "\nTipo:     " << vehiculo->getTipo()   // llamada polimórfica
            << "\nHoras:    " << ticket->getHoras(horaSalida)
            << "\nTarifa:   $" << tarifaPorHora() << "/hr"
            << "\nTotal:    $" << monto
-           << "\n==============";
+           << "\n";
         return ss.str();
     }
 
@@ -213,4 +213,5 @@ public:
     }
 
 };
+
 #endif // ESTACIONAMIENTO_H_
