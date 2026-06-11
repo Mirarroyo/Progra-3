@@ -1,6 +1,6 @@
 /*
- Proyecto Estacionamiento 
- Progra 3
+* Proyecto Estacionamiento 
+ * Progra 3
  */
 
 #ifndef VEHICULO_H_
