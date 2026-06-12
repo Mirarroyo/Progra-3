@@ -33,7 +33,7 @@ protected:
 public:
     Vehiculo() : placa(""), marca(""), color("") {} 
 
-/** */
+/** 
  * Constructor recibe valores para llenar las variables de instancia
  *
  * Inicializa placa, marca y color con los valores recibidos.
@@ -295,7 +295,7 @@ public:
      * @param
      * @return string con los valores y texto concatenado
      */
-    
+
     string to_string() {
         stringstream ss;
         ss << "Placa: "        << placa
