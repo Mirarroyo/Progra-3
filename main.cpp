@@ -84,23 +84,22 @@ void verCajones(Estacionamiento& parking) {
     parking.mostrarCajones();
 }
 
+void mostrarCatalogo(Vehiculo* catalogo[], int totalVehiculos) {
+    cout << "Vehiculos registrados en el sistema" << endl;
+    for (int i = 0; i < totalVehiculos; i++) {
+        cout << "Tipo: " << catalogo[i]->getTipo() << " | "
+             << catalogo[i]->to_string() << endl;
+    }
+}
+ 
+
 // Menu principal
 
-void ejecutarMenu(Estacionamiento& parking) {
+void ejecutarMenu(Estacionamiento& parking, Vehiculo* catalogo[], int totalVehiculos) {
     int opcion = 0;
-    bool continuar = true; 
-
-    // vehiculos para el catalogo
-    Auto      a1("ABC-123", "Toyota", "Rojo",   4);
-    Moto      m1("XYZ-999", "Honda",  "Negro",  false);
-    Camioneta c1("DEF-456", "Ford",   "Blanco", 2.5);
-    Auto      a2("GHI-321", "Nissan", "Azul",   2);
-
-    const int TOTAL_VEHICULOS = 4;
-    Vehiculo* catalogo[TOTAL_VEHICULOS] = { &a1, &m1, &c1, &a2 };
-
-
-    Boleto boletos[TOTAL_VEHICULOS];
+    bool continuar = true;
+ 
+    Boleto boletos[totalVehiculos];
 
     while (continuar) {
         cout << "\n   SISTEMA: " << parking.getNombre() << endl;
@@ -108,7 +107,8 @@ void ejecutarMenu(Estacionamiento& parking) {
         cout << "2. Registrar entrada" << endl;
         cout << "3. Registrar salida y cobro" << endl;
         cout << "4. Ver mapa de cajones" << endl;
-        cout << "5. Salir" << endl;
+        cout << "5. Mostrar Catálogo" << endl;
+        cout << "6. Salir" << endl;
         cout << "Opcion: ";
         cin >> opcion;
 
@@ -117,15 +117,18 @@ void ejecutarMenu(Estacionamiento& parking) {
                 verDisponibilidad(parking); 
                 break;
             case 2: 
-                registrarEntrada(parking, catalogo, boletos, TOTAL_VEHICULOS);  
+                registrarEntrada(parking, catalogo, boletos, totalVehiculos);  
                 break;
             case 3: 
-                registrarSalida(parking, catalogo, boletos, TOTAL_VEHICULOS);   
+                registrarSalida(parking, catalogo, boletos, totalVehiculos);   
                 break;
             case 4: 
                 verCajones(parking);        
                 break;
             case 5: 
+                mostrarCatalogo(catalogo, totalVehiculos);
+                break;
+            case 6: 
                 cout << "Hasta luego." << endl; 
                 continuar = false; 
                 break;
@@ -136,11 +139,19 @@ void ejecutarMenu(Estacionamiento& parking) {
 }
 
 int main() {
-    // Inicializamos el estacionamiento con 5 cajones de capacidad
+   const int TOTAL_VEHICULOS = 4;
+    Vehiculo* catalogo[TOTAL_VEHICULOS] = {
+        new Auto     ("ABC-123", "Toyota", "Rojo",   4),
+        new Moto     ("XYZ-999", "Honda",  "Negro",  false),
+        new Camioneta("DEF-456", "Ford",   "Blanco", 2.5),
+        new Auto     ("GHI-321", "Nissan", "Azul",   2)
+    };
+ 
+    // Inicializa el estacionamiento con 5 cajones de capacidad
     Estacionamiento parking("Parking Central", 5);
-    
-    // Arrancamos el menu interactivo
-    ejecutarMenu(parking);
+ 
+    // Menu interactivo
+    ejecutarMenu(parking, catalogo, TOTAL_VEHICULOS);
     
     return 0;
 }
