@@ -28,7 +28,7 @@ No requiere librerías externas. Funciona con cualquier compilador que soporte C
 
 ## Casos donde el proyecto deja de funcionar
 
-- Si todos los cajones están ocupados, `buscarCajonLibre()` regresa `-1` y `entrada()` devuelve un `Boleto` vacío. El vehículo no queda registrado.
+- Si todos los cajones están ocupados, `buscarCajonLibre()` regresa `-1` y `entrada()` devuelve un `Boleto` vacío y el vehículo no queda registrado.
 - Si `horaSalida < horaEntrada` en `getHoras()`, la diferencia es negativa y se cobra el mínimo de 1 hora en lugar del tiempo real.
-- Si se intenta cobrar un boleto ya cerrado (ya se llamó `cerrar()`), `getHoras()` sigue funcionando pero el boleto ya no está activo.
-- `Vehiculo` no puede instanciarse directamente porque tiene métodos virtuales puros — el compilador lo rechaza.
+- Si se intenta cobrar un boleto ya cerrado.
+- Si se introduce una letra como opción en el menú, el menú se cicla infinitamente.
